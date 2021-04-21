@@ -227,4 +227,17 @@ function deleteOrderItem(id){
 
 }
 
-
+// 刪除後台全部訂單
+const discardAllBtn = document.querySelector(".discardAllBtn");
+discardAllBtn.addEventListener("click",function(e){
+  e.preventDefault();
+  axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_path}/orders`, {
+    headers: {
+      'Authorization': token,
+    }
+  })
+    .then(function (response) {
+      alert("刪除全部訂單成功");
+      getOrderList();
+    })
+})
